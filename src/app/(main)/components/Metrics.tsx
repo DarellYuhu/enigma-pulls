@@ -3,10 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { usePages } from "@/hooks/feature/use-pages";
 import {
   ChartNoAxesCombined,
-  Heart,
   MousePointerClick,
   SquarePlay,
-  Star,
 } from "lucide-react";
 import { type LucideIcon } from "lucide-react";
 
@@ -15,7 +13,7 @@ export default function Metrics() {
   return (
     <div>
       {data && (
-        <div className="grid grid-cols-10 gap-3">
+        <div className="grid grid-cols-9 gap-3">
           <MetricCard
             data={{
               icon: ChartNoAxesCombined,
@@ -40,7 +38,7 @@ export default function Metrics() {
               description: "",
             }}
           />
-          <MetricCard
+          {/* <MetricCard
             data={{
               icon: Heart,
               name: "Total Likes",
@@ -55,7 +53,7 @@ export default function Metrics() {
               value: data.metrics.page_follows,
               description: "",
             }}
-          />
+          /> */}
         </div>
       )}
     </div>
@@ -70,7 +68,7 @@ type MetricCardProps = {
 };
 
 const MetricCard = ({ data }: { data: MetricCardProps }) => (
-  <Card className="col-span-2">
+  <Card className="col-span-3">
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-sm font-medium">{data.name}</CardTitle>
       <data.icon className="size-4" />

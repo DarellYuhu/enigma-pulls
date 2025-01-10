@@ -30,19 +30,19 @@ const column: ColumnDef<PageData["data"]["pages"]["0"]>[] = [
       );
     },
   },
-  {
-    id: "metrics.page_follows",
-    accessorKey: "metrics.page_follows",
-    header({ column }) {
-      return <DataTableColumnHeader column={column} title="Followers" />;
-    },
-  },
-  {
-    accessorKey: "metrics.page_fans",
-    header({ column }) {
-      return <DataTableColumnHeader column={column} title="Likes" />;
-    },
-  },
+  // {
+  //   id: "metrics.page_follows",
+  //   accessorKey: "metrics.page_follows",
+  //   header({ column }) {
+  //     return <DataTableColumnHeader column={column} title="Followers" />;
+  //   },
+  // },
+  // {
+  //   accessorKey: "metrics.page_fans",
+  //   header({ column }) {
+  //     return <DataTableColumnHeader column={column} title="Likes" />;
+  //   },
+  // },
   {
     accessorKey: "metrics.page_impressions",
     header({ column }) {

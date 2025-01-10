@@ -5,12 +5,14 @@ import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { usePages } from "@/hooks/feature/use-pages";
 import { usePageConfigStore } from "@/stores/page-config-store";
 import { signOut } from "next-auth/react";
+import CreateGroupDeialog from "./CreateGroupDialog";
 
 export default function Configuration() {
   const { refetch } = usePages();
   const { from, to, setFrom, setTo } = usePageConfigStore();
   return (
     <div className="flex flex-row justify-end gap-3">
+      <CreateGroupDeialog />
       <DateRangePicker
         date={{ from, to }}
         setDate={(date) => {

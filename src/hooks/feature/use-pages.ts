@@ -31,6 +31,12 @@ export type PageData = {
       metrics: Record<string, number>;
     }[];
     metrics: Record<string, number>;
+    groups: {
+      id: string;
+      type: string;
+      name: string;
+      pageIds: string[];
+    }[];
     demographic: Record<string, { key: string; value: number }[]>;
     timeSeries: Record<string, { end_time: string; value: number }[]>;
   };

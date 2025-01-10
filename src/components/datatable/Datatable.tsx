@@ -59,7 +59,7 @@ export function Datatable<TData, TValue>({
   return (
     <div className={cn("space-y-4", className)}>
       <div className="rounded-md border">
-        <Table>
+        <Table className="h-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

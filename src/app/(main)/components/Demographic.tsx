@@ -1,3 +1,5 @@
+"use client";
+
 import { RechartHzBar } from "@/components/charts";
 import {
   Card,
