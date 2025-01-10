@@ -28,8 +28,10 @@ export type PageData = {
       id: "string";
       name: "string";
       isActive: boolean;
+      metrics: Record<string, number>;
     }[];
     metrics: Record<string, number>;
+    demographic: Record<string, { key: string; value: number }[]>;
     timeSeries: Record<string, { end_time: string; value: number }[]>;
   };
   statusCode: number;

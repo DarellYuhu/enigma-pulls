@@ -29,6 +29,7 @@ export default function TimeSeries() {
             dataKey="value"
             label="Daily Engagements"
             labelKey="end_time"
+            curveType={"basis"}
           />
         </CardContent>
       </Card>
@@ -47,6 +48,7 @@ export default function TimeSeries() {
             dataKey="value"
             label="Daily Followers"
             labelKey="end_time"
+            curveType={"basis"}
           />
         </CardContent>
       </Card>
@@ -65,6 +67,7 @@ export default function TimeSeries() {
             dataKey="value"
             label="Daily Impressions"
             labelKey="end_time"
+            curveType={"basis"}
           />
         </CardContent>
       </Card>
@@ -82,6 +85,7 @@ export default function TimeSeries() {
             dataKey="value"
             label="Daily Likes"
             labelKey="end_time"
+            curveType={"basis"}
           />
         </CardContent>
       </Card>
@@ -100,6 +104,7 @@ export default function TimeSeries() {
             dataKey="value"
             label="Daily Video Views"
             labelKey="end_time"
+            curveType={"basis"}
           />
         </CardContent>
       </Card>

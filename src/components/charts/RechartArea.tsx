@@ -7,6 +7,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { CurveType } from "recharts/types/shape/Curve";
 
 type Props = {
   data: any[];
@@ -14,9 +15,10 @@ type Props = {
   labelKey: string;
   label: string;
   xAxisHide?: boolean;
+  curveType?: CurveType;
 };
 
-export const RechartArea = (props: Props) => {
+export const RechartArea = ({ curveType = "natural", ...props }: Props) => {
   return (
     <ChartContainer
       className="h-full w-full"
@@ -58,7 +60,7 @@ export const RechartArea = (props: Props) => {
         />
         <Area
           dataKey={props.dataKey}
-          type="basis"
+          type={curveType}
           fill="hsl(var(--chart-6))"
           fillOpacity={0.4}
           stroke="hsl(var(--chart-6))"

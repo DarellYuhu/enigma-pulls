@@ -1,6 +1,7 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { FacebookClient } from "./facebook-client";
+import { AxiosError } from "axios";
 
 type Data = {
   token: string;
@@ -13,6 +14,7 @@ type Data = {
 };
 
 export const { signIn, signOut, auth, handlers } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       credentials: {
@@ -21,11 +23,17 @@ export const { signIn, signOut, auth, handlers } = NextAuth({
       },
       // @ts-ignore
       async authorize(request) {
-        const { data }: { data: Data } = await FacebookClient.post(
-          "/auth/sign-in",
-          request
-        );
-        return data;
+        try {
+          const { data }: { data: Data } = await FacebookClient.post(
+            "/auth/sign-in",
+            request
+          );
+          return data;
+        } catch (error) {
+          if (error instanceof AxiosError) {
+            throw new CredentialsSignin("Wrong username or password");
+          }
+        }
       },
     }),
   ],
