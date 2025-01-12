@@ -4,7 +4,7 @@ import { Datatable, DataTableColumnHeader } from "@/components/datatable";
 import { Button } from "@/components/ui/button";
 import { PageData, usePages } from "@/hooks/feature/use-pages";
 import { ColumnDef } from "@tanstack/react-table";
-// import Link from "next/link";
+import Link from "next/link";
 
 export default function PageTable() {
   const { data } = usePages();
@@ -24,25 +24,25 @@ const column: ColumnDef<PageData["data"]["pages"]["0"]>[] = [
     header: "Page Name",
     cell(props) {
       return (
-        // <Link href={`/page/${props.row.original.id}`}>
-        <Button variant={"outline"}>{props.row.original.name}</Button>
-        // </Link>
+        <Link href={`/${props.row.original.id}`}>
+          <Button variant={"outline"}>{props.row.original.name}</Button>
+        </Link>
       );
     },
   },
-  // {
-  //   id: "metrics.page_follows",
-  //   accessorKey: "metrics.page_follows",
-  //   header({ column }) {
-  //     return <DataTableColumnHeader column={column} title="Followers" />;
-  //   },
-  // },
-  // {
-  //   accessorKey: "metrics.page_fans",
-  //   header({ column }) {
-  //     return <DataTableColumnHeader column={column} title="Likes" />;
-  //   },
-  // },
+  {
+    id: "metrics.page_follows",
+    accessorKey: "metrics.page_follows",
+    header({ column }) {
+      return <DataTableColumnHeader column={column} title="Followers" />;
+    },
+  },
+  {
+    accessorKey: "metrics.page_fans",
+    header({ column }) {
+      return <DataTableColumnHeader column={column} title="Likes" />;
+    },
+  },
   {
     accessorKey: "metrics.page_impressions",
     header({ column }) {

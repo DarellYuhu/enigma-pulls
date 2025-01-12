@@ -56,8 +56,6 @@ export default function CreateGroupDeialog() {
 
   const onSubmit = (data: CreateGroupSchema) => mutate(data);
 
-  console.log(form.formState.errors);
-
   return (
     <Dialog onOpenChange={(open) => open && form.reset()}>
       <DialogTrigger className={buttonVariants({ variant: "outline" })}>

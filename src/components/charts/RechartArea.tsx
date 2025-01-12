@@ -8,6 +8,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { CurveType } from "recharts/types/shape/Curve";
+import { isValid } from "date-fns";
 
 type Props = {
   data: any[];
@@ -57,6 +58,11 @@ export const RechartArea = ({ curveType = "natural", ...props }: Props) => {
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
+          labelFormatter={(value) =>
+            isValid(new Date(value))
+              ? new Date(value).toLocaleDateString("en-US")
+              : value
+          }
         />
         <Area
           dataKey={props.dataKey}

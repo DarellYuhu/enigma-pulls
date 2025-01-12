@@ -8,10 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { usePages } from "@/hooks/feature/use-pages";
+import { usePage } from "@/hooks/feature/use-page";
 
 export default function TimeSeries() {
-  const { data } = usePages();
+  const { data } = usePage();
 
   return (
     <div className="grid grid-cols-2 gap-4">
@@ -25,7 +25,7 @@ export default function TimeSeries() {
         </CardHeader>
         <CardContent className="h-96">
           <RechartArea
-            data={data?.timeSeries.page_post_engagements ?? []}
+            data={data?.timeseries.page_post_engagements ?? []}
             dataKey="value"
             label="Daily Engagements"
             labelKey="end_time"
@@ -44,7 +44,7 @@ export default function TimeSeries() {
         </CardHeader>
         <CardContent className="h-96">
           <RechartArea
-            data={data?.timeSeries.page_daily_follows ?? []}
+            data={data?.timeseries.page_daily_follows ?? []}
             dataKey="value"
             label="Daily Followers"
             labelKey="end_time"
@@ -63,7 +63,7 @@ export default function TimeSeries() {
         </CardHeader>
         <CardContent className="h-96">
           <RechartArea
-            data={data?.timeSeries.page_impressions ?? []}
+            data={data?.timeseries.page_impressions ?? []}
             dataKey="value"
             label="Daily Impressions"
             labelKey="end_time"
@@ -81,7 +81,7 @@ export default function TimeSeries() {
         </CardHeader>
         <CardContent className="h-96">
           <RechartArea
-            data={data?.timeSeries.page_fan_adds ?? []}
+            data={data?.timeseries.page_fan_adds ?? []}
             dataKey="value"
             label="Daily Likes"
             labelKey="end_time"
@@ -100,7 +100,7 @@ export default function TimeSeries() {
         </CardHeader>
         <CardContent className="h-96">
           <RechartArea
-            data={data?.timeSeries.page_video_views ?? []}
+            data={data?.timeseries.page_video_views ?? []}
             dataKey="value"
             label="Daily Video Views"
             labelKey="end_time"

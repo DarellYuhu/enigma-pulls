@@ -1,6 +1,6 @@
 "use client";
 import { MetricCard } from "@/components/custom";
-import { usePages } from "@/hooks/feature/use-pages";
+import { usePage } from "@/hooks/feature/use-page";
 import {
   ChartNoAxesCombined,
   Heart,
@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export default function Metrics() {
-  const { data } = usePages();
+  const { data } = usePage();
   return (
     <div>
       {data && (
@@ -19,7 +19,7 @@ export default function Metrics() {
             data={{
               icon: ChartNoAxesCombined,
               name: "Total Impressions",
-              value: data.metrics.page_impressions,
+              value: data.aggregate.page_impressions,
               description: "",
             }}
           />
@@ -27,7 +27,7 @@ export default function Metrics() {
             data={{
               icon: MousePointerClick,
               name: "Total Engagements",
-              value: data.metrics.page_post_engagements,
+              value: data.aggregate.page_post_engagements,
               description: "",
             }}
           />
@@ -35,7 +35,7 @@ export default function Metrics() {
             data={{
               icon: SquarePlay,
               name: "Total Page Video Views",
-              value: data.metrics.page_video_views,
+              value: data.aggregate.page_video_views,
               description: "",
             }}
           />
@@ -43,7 +43,7 @@ export default function Metrics() {
             data={{
               icon: Heart,
               name: "Total Likes",
-              value: data.metrics.page_fans,
+              value: data.aggregate.page_fans,
               description: "",
             }}
           />
@@ -51,7 +51,7 @@ export default function Metrics() {
             data={{
               icon: Star,
               name: "Total Followers",
-              value: data.metrics.page_follows,
+              value: data.aggregate.page_follows,
               description: "",
             }}
           />

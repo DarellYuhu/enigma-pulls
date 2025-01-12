@@ -7,21 +7,19 @@ import TimeSeries from "./components/TimeSeries";
 
 export default function Home() {
   return (
-    <>
-      <div className="p-4 space-y-4">
-        <Configuration />
+    <div className="p-4 space-y-4">
+      <Configuration />
 
-        <Metrics />
+      <Metrics />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MapData />
-          <PageTable />
-        </div>
-
-        <TimeSeries />
-
-        <Demographic />
+      <div className="grid grid-cols-2 gap-4">
+        <MapData />
+        <PageTable />
       </div>
-    </>
+
+      <TimeSeries />
+
+      <Demographic />
+    </div>
   );
 }
