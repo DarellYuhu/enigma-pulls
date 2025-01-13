@@ -11,7 +11,7 @@ export const MAP_THEME = {
 };
 
 type props<T = unknown> = {
-  layerData?: { rid: string; color: string; data?: T }[];
+  layerData?: { rid: string; color: string; alpha: number; data?: T }[];
   renderTooltip?: (data?: T) => React.ReactNode;
 };
 
@@ -74,7 +74,12 @@ export const Maps = <T = unknown,>({ layerData, renderTooltip }: props<T>) => {
                   stops: layerData.map((item) => [item.rid, item.color]),
                 }
               : "transparent",
-            "fill-opacity": 0.5,
+            "fill-opacity": {
+              type: "categorical",
+              property: "regcode",
+              default: 0,
+              stops: layerData?.map((item) => [item.rid, item.alpha]),
+            },
           }}
         />
       </Source>

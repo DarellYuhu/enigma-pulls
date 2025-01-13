@@ -1,4 +1,5 @@
 "use client";
+import { SingleSelect } from "@/components/custom";
 import {
   Card,
   CardContent,
@@ -9,50 +10,104 @@ import {
 import { Maps } from "@/components/ui/maps";
 import { usePages } from "@/hooks/feature/use-pages";
 import chroma from "chroma-js";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export default function MapData() {
+  const [option, setOption] = useState("page_fans");
   const { data } = usePages();
 
   const colors = useMemo(() => {
-    return Object.fromEntries(
-      data?.groups.map((g) => [g.id, chroma.random().hex()]) ?? []
+    const max = Math.max(
+      ...(data?.groups.map((g) => g.aggregate[option]) ?? [])
     );
-  }, [data?.groups]);
+    const min = 0;
+    const range = 0.5 - min;
+    return Object.fromEntries(
+      data?.groups.map((g) => {
+        const value = g.aggregate[option];
+        const alpha = (value / max) * range + min;
+        console.log(value, alpha);
+        return [g.id, { alpha, color: chroma("slateblue").hex() }];
+      }) ?? []
+    );
+  }, [data?.groups, option]);
 
   return (
-    <Card>
+    <Card className="relative">
       <CardHeader>
         <CardTitle>Grouping Pages</CardTitle>
         <CardDescription>Pages grouped by location</CardDescription>
       </CardHeader>
       <CardContent className="h-96 overflow-hidden">
         {data && (
-          <Maps
-            layerData={data.groups.map((g) => ({
-              data: g,
-              rid: g.id,
-              color: colors[g.id],
-            }))}
-            renderTooltip={(hovered) =>
-              hovered && (
-                <Card>
-                  <CardHeader className="p-2">
-                    <CardTitle>{hovered.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-2 border-t">
-                    {hovered.pageIds.map((id) => (
-                      <div key={id}>
-                        {data.pages.find((p) => p.id === id)?.name}
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              )
-            }
-          />
+          <>
+            <Maps
+              layerData={data.groups.map((g) => ({
+                data: g,
+                rid: g.id,
+                alpha: colors[g.id].alpha,
+                color: colors[g.id].color,
+              }))}
+              renderTooltip={(hovered) =>
+                hovered && (
+                  <Card>
+                    <CardHeader className="p-2">
+                      <CardTitle>{hovered.name}</CardTitle>
+                      <CardDescription>
+                        Total: {hovered.aggregate[option]}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-2 border-t">
+                      {hovered.pages.map((page) => (
+                        <div
+                          className="grid grid-cols-12 gap-1 items-center text-sm"
+                          key={page.id}
+                        >
+                          <div className="col-span-1 size-2 rounded-full bg-slate-200" />
+                          <div className="col-span-9">{page.name}</div>
+                          <div className="col-span-2">
+                            {page.metrics[option]}
+                          </div>
+                        </div>
+                      ))}
+                    </CardContent>
+                  </Card>
+                )
+              }
+            />
+            <div className={"absolute top-6 right-6"}>
+              <SingleSelect
+                selections={options}
+                setValue={setOption}
+                value={option}
+              />
+            </div>
+          </>
         )}
       </CardContent>
     </Card>
   );
 }
+
+const options = [
+  {
+    label: "Likes",
+    value: "page_fans",
+  },
+  {
+    label: "Followers",
+    value: "page_follows",
+  },
+  {
+    label: "Impressions",
+    value: "page_impressions",
+  },
+  {
+    label: "Engagements",
+    value: "page_post_engagements",
+  },
+  {
+    label: "Video Views",
+    value: "page_video_views",
+  },
+];
