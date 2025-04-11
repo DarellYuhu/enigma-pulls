@@ -11,6 +11,7 @@ import { Maps } from "@/components/ui/maps";
 import { usePages } from "@/hooks/feature/use-pages";
 import chroma from "chroma-js";
 import { useMemo, useState } from "react";
+import { AddGroupPageDialog } from "./AddGroupPageDialog";
 
 export default function MapData() {
   const [option, setOption] = useState("page_fans");
@@ -51,11 +52,14 @@ export default function MapData() {
               renderTooltip={(hovered) =>
                 hovered && (
                   <Card>
-                    <CardHeader className="p-2">
-                      <CardTitle>{hovered.name}</CardTitle>
-                      <CardDescription>
-                        Total: {hovered.aggregate[option]}
-                      </CardDescription>
+                    <CardHeader className="p-2 flex flex-row items-center justify-between">
+                      <div>
+                        <CardTitle>{hovered.name}</CardTitle>
+                        <CardDescription>
+                          Total: {hovered.aggregate[option]}
+                        </CardDescription>
+                      </div>
+                      <AddGroupPageDialog group={hovered} pages={data.pages} />
                     </CardHeader>
                     <CardContent className="p-2 border-t">
                       {hovered.pages.map((page) => (
