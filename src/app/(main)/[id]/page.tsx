@@ -1,5 +1,6 @@
 import Configuration from "./components/Configuration";
 import Metrics from "./components/Metrics";
+import { Posts } from "./components/Posts";
 import TimeSeries from "./components/TimeSeries";
 
 export default function PageById() {
@@ -8,6 +9,8 @@ export default function PageById() {
       <Configuration />
 
       <Metrics />
+
+      <Posts />
 
       <TimeSeries />
 

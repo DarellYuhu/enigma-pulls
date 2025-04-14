@@ -31,6 +31,24 @@ type Data = {
     isActive: boolean;
     aggregate: Record<string, number>;
     timeseries: Record<string, { end_time: string; value: number }[]>;
+    posts: {
+      metrics: Record<Key, number>;
+      id: string;
+      pageId: string;
+      created_time: string;
+      caption: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+    }[];
   };
   statusCode: number;
 };
+
+enum Key {
+  "post_reactions_like_total",
+  "post_reactions_love_total",
+  "post_reactions_wow_total",
+  "post_reactions_haha_total",
+  "post_reactions_sorry_total",
+  "post_reactions_anger_total",
+}
