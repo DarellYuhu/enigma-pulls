@@ -14,7 +14,7 @@ import { useMemo, useState } from "react";
 import { AddGroupPageDialog } from "./AddGroupPageDialog";
 
 export default function MapData() {
-  const [option, setOption] = useState("page_fans");
+  const [option, setOption] = useState("page_impressions");
   const { data } = usePages();
 
   const colors = useMemo(() => {
@@ -95,16 +95,16 @@ export default function MapData() {
 
 const options = [
   {
+    label: "Impressions",
+    value: "page_impressions",
+  },
+  {
     label: "Likes",
     value: "page_fans",
   },
   {
     label: "Followers",
     value: "page_follows",
-  },
-  {
-    label: "Impressions",
-    value: "page_impressions",
   },
   {
     label: "Engagements",

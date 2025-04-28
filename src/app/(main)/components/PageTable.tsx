@@ -61,4 +61,18 @@ const column: ColumnDef<PageData["data"]["pages"]["0"]>[] = [
       return <DataTableColumnHeader column={column} title="Video Views" />;
     },
   },
+  {
+    id: "action",
+    header: "Action",
+    cell(props) {
+      return (
+        <Link
+          href={`https://www.facebook.com/${props.row.original.id}`}
+          target="_blank"
+        >
+          <Button variant={"outline"}>View</Button>
+        </Link>
+      );
+    },
+  },
 ];

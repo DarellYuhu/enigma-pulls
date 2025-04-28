@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { usePage } from "@/hooks/feature/use-page";
 import { usePageConfigStore } from "@/stores/page-config-store";
+import { ArrowLeft } from "lucide-react";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Configuration() {
+  const route = useRouter();
   const { refetch, data } = usePage();
   const { from, to, setFrom, setTo } = usePageConfigStore();
   return (
@@ -25,6 +28,9 @@ export default function Configuration() {
         </Button>
         <Button onClick={() => signOut()} variant={"destructive"}>
           Logout
+        </Button>
+        <Button onClick={() => route.back()}>
+          <ArrowLeft /> Back
         </Button>
       </div>
     </div>
