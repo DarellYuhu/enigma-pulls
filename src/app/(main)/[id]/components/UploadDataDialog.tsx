@@ -86,11 +86,11 @@ export const UploadDataDialog = () => {
             <FormField
               control={form.control}
               name="type"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Metric Type</FormLabel>
                   <FormControl>
-                    <Select>
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger>
                         <SelectValue placeholder={"Select Metric Type"} />
                       </SelectTrigger>
