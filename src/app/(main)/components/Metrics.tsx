@@ -34,7 +34,7 @@ export default function Metrics() {
           <MetricCard
             data={{
               icon: SquarePlay,
-              name: "Total Page Video Views",
+              name: "Views",
               value: data.metrics.page_video_views,
               description: "",
             }}
